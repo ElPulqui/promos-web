@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promociones Medios de Pago</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Iconos Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --naranja: #FF6600;
+      --violeta: #835afd;
+      --azul: #0099ff;
+      --verde: #00c48c;
+      --gris: #f7f7fa;
+      --blanco: #fff;
+      --negro: #232323;
+      --rojo: #f44336;
+      --sombra: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gris);
+      color: var(--negro);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(90deg, var(--naranja), var(--violeta));
+      color: var(--blanco);
+      padding: 2.5rem 1rem 3.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin: 0 0 1rem 0;
+      animation: fadeDown 1s ease;
+    }
+    header p {
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin: 0 0 1.2rem 0;
+      animation: fadeUp 1s 0.3s ease backwards;
+    }
+    .cta-btn {
+      padding: 1rem 2.2rem;
+      background: var(--blanco);
+      color: var(--naranja);
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: var(--sombra);
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.15s;
+      animation: fadeUp 1s 0.6s ease backwards;
+    }
+    .cta-btn:hover {
+      background: var(--naranja);
+      color: var(--blanco);
+      transform: scale(1.06);
+    }
+    @keyframes fadeDown {
+      0% { opacity: 0; transform: translateY(-40px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: -2rem auto 0 auto;
+      padding: 0 1.2rem 2.5rem 1.2rem;
+      box-sizing: border-box;
+    }
+    .promos-section {
+      margin-bottom: 2.5rem;
+    }
+    .promos-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .promos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .promo-card {
+      background: var(--blanco);
+      border-radius: 1.5rem;
+      box-shadow: var(--sombra);
+      padding: 2rem 1.4rem 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.19s, box-shadow 0.19s;
+      border-left: 6px solid var(--naranja);
+    }
+    .promo-card[data-color="naranja"] { border-color: var(--naranja);}
+    .promo-card[data-color="violeta"] { border-color: var(--violeta);}
+    .promo-card[data-color="azul"] { border-color: var(--azul);}
+    .promo-card[data-color="verde"] { border-color: var(--verde);}
+    .promo-card[data-color="rojo"] { border-color: var(--rojo);}
+    .promo-card:hover {
+      transform: translateY(-8px) scale(1.025);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .promo-card .promo-title {
+      font-size: 1.24rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .promo-card .promo-desc {
+      font-size: 1.04rem;
+      margin-bottom: 0.5rem;
+      color: #545454;
+    }
+    .promo-card .promo-cuotas {
+      font-size: 1.14rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .promo-card .promo-tag {
+      display: inline-block;
+      background: var(--gris);
+      color: var(--negro);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 1.2rem;
+      padding: 0.26rem 0.9rem;
+      margin-top: 0.7rem;
+    }
+    /* Otros Medios de Pago */
+    .other-payments-section {
+      margin-bottom: 2.5rem;
+    }
+    .other-payments-title {
+      font-size: 1.32rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .other-payments-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .other-payment-card {
+      background: var(--blanco);
+      border-radius: 1.1rem;
+      box-shadow: var(--sombra);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 1.4rem;
+      min-width: 138px;
+      min-height: 120px;
+      transition: box-shadow 0.15s, transform 0.15s;
+      cursor: pointer;
+      border-left: 5px solid var(--violeta);
+      font-size: 1.06rem;
+    }
+    .other-payment-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.11);
+      transform: scale(1.045);
+      background: var(--gris);
+    }
+    .other-payment-card .icon {
+      margin-bottom: 0.7rem;
+      color: var(--violeta);
+      font-size: 2.25rem;
+    }
+    /* Animaciones al hacer scroll */
+    .animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Responsividad */
+    @media (max-width: 700px) {
+      header h1 { font-size: 2rem;}
+      .promo-card, .other-payment-card {
+        padding: 1.3rem 0.8rem 1rem 0.8rem;
+      }
+      main { padding: 0 0.3rem 1.8rem 0.3rem;}
+    }
+    @media (max-width: 450px) {
+      .promo-card, .other-payment-card {
+        min-width: 99px;
+        min-height: 92px;
+      }
+      header h1 { font-size: 1.34rem;}
+      .promos-title, .other-payments-title { font-size: 1.1rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado con animación y CTA -->
+  <header>
+    <h1 class="animate">Aprovechá nuestras promociones exclusivas</h1>
+    <p class="animate">¡Pagá en cuotas sin interés con tus tarjetas favoritas o elegí otros medios de pago seguros!</p>
+    <button class="cta-btn animate" onclick="document.getElementById('promos').scrollIntoView({behavior:'smooth'});">
+      ¡Quiero mi promo!
+    </button>
+    <!-- Animación de burbujas suaves en el header -->
+    <svg style="position:absolute;bottom:-10px;left:0;width:100%;height:55px;z-index:0" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <path d="M0 20 Q 25 0 50 20 T 100 20 V 0 H 0 Z" fill="#fff" opacity="0.23"/>
+    </svg>
+  </header>
+
+  <main>
+    <!-- Sección de Promociones -->
+    <section class="promos-section animate" id="promos">
+      <div class="promos-title">Promociones por Tarjeta</div>
+      <div class="promos-grid">
+        <!-- Tarjeta Naranja -->
+        <div class="promo-card" data-color="naranja">
+          <span class="promo-title">Tarjeta Naranja</span>
+          <span class="promo-desc">4 y 6 cuotas sin interés</span>
+          <span class="promo-cuotas">¡Pagá en cómodas cuotas!</span>
+          <span class="promo-tag">Todos los días</span>
+        </div>
+        <!-- Tarjeta Tuya -->
+        <div class="promo-card" data-color="violeta">
+          <span class="promo-title">Tarjeta Tuya</span>
+          <span class="promo-desc">3 cuotas sin interés</span>
+          <span class="promo-cuotas">¡Exclusivo Chaco!</span>
+          <span class="promo-tag">Todos los días</span>
+        </div>
+        <!-- Cuota Simple -->
+        <div class="promo-card" data-color="azul">
+          <span class="promo-title">Cuota Simple<br>
+            <span style="font-size:0.96em; font-weight:400;">(Visa / Master / Cabal)</span>
+          </span>
+          <span class="promo-desc">3 y 6 cuotas sin interés</span>
+          <span class="promo-tag">Todos los días</span>
+        </div>
+        <!-- Banco Santa Fe -->
+        <div class="promo-card" data-color="verde">
+          <span class="promo-title">Banco Santa Fe</span>
+          <span class="promo-desc">3 cuotas sin interés + <b>10% de reintegro</b></span>
+          <span class="promo-cuotas">¡Solo los jueves!</span>
+          <span class="promo-tag">Jueves</span>
+        </div>
+        <!-- Banco Provincia Bs As -->
+        <div class="promo-card" data-color="rojo">
+          <span class="promo-title">Banco Provincia de Bs. As.</span>
+          <span class="promo-desc">4 cuotas sin interés</span>
+          <span class="promo-tag">Todos los días</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Otros Medios de Pago -->
+    <section class="other-payments-section animate">
+      <div class="other-payments-title">Otros Medios de Pago</div>
+      <div class="other-payments-grid">
+        <div class="other-payment-card">
+          <span class="icon"><i data-feather="smartphone"></i></span>
+          <span>Mercado Pago (CVU)</span>
+        </div>
+        <div class="other-payment-card">
+          <span class="icon"><i data-feather="repeat"></i></span>
+          <span>Transferencia Bancaria</span>
+        </div>
+        <div class="other-payment-card">
+          <span class="icon"><i data-feather="credit-card"></i></span>
+          <span>Tarjeta de Débito</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer style="background:var(--blanco);text-align:center;padding:1.2rem 0;font-size:0.95rem;color:#aaa;box-shadow:0 -1px 8px #0001;">
+    &copy; 2025 Tienda de Promociones. Todos los derechos reservados.
+  </footer>
+  <!-- JS -->
+  <script>
+    // Feather icons
+    feather.replace();
+
+    // Animaciones al hacer scroll
+    function onScrollAnimate() {
+      document.querySelectorAll('.animate').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 70) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScrollAnimate);
+    window.addEventListener('DOMContentLoaded', onScrollAnimate);
+  </script>
+</body>
+</html>
